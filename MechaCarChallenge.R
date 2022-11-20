@@ -9,3 +9,8 @@ lots <- read.csv(file='Suspension_Coil.csv')
 total_summary <- lots %>% summarize(Mean=mean(PSI),Median=median(PSI),Variance=var(PSI),SD=sd(PSI)) #create dataframe with summary statistics on PSI
 lot_summary <- lots %>% group_by(Manufacturing_Lot) %>% summarize(Mean=mean(PSI),Median=median(PSI),Variance=var(PSI),SD=sd(PSI)) #create dataframe with summary statistics on PSI by lot
 
+t.test(lots$PSI, mu=1500) # compare mean PSI across all lots to population mean of 1500
+
+t.test(subset(lots,Manufacturing_Lot == 'Lot1',select=PSI), mu=1500) # compare mean PSI of Lot1 to population mean of 1500
+t.test(subset(lots,Manufacturing_Lot == 'Lot2',select=PSI), mu=1500) # compare mean PSI of Lot2 to population mean of 1500
+t.test(subset(lots,Manufacturing_Lot == 'Lot3',select=PSI), mu=1500) # compare mean PSI of Lot3 to population mean of 1500
